@@ -1,43 +1,24 @@
-terraform {
-  backend "s3" {}
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+variable "aws_region" {
+    default = "ap-northeast-1"
+}
+variable "aws_zone" {
+    default = "ap-northeast-1c"
 }
 
-provider "aws" {}
-
-variable "aws_account_id" {}
-
-variable "aws_db_instance_fastladder_instance_class" {
-  default = "db.t2.micro"
+provider "aws" {
+    access_key = "${var.aws_access_key}"
+    secret_key = "${var.aws_secret_key}"
+    region     = "${var.aws_region}"
 }
 
-variable "aws_ecs_service_desired_count_rails" {
-  default = 1
-}
-
-variable "resource_base_name" {
-  default = "fastladder"
-}
-
-variable "fastladder_db_name" {
-  default = "fastladder"
-}
-
-variable "fastladder_db_pass" {}
-
-variable "fastladder_db_user" {
-  default = "root"
-}
-
-variable "fastladder_secret_key_base" {}
-
-module "fastladder" {
-  aws_account_id                            = "${var.aws_account_id}"
-  aws_db_instance_fastladder_instance_class = "${var.aws_db_instance_fastladder_instance_class}"
-  aws_ecs_service_desired_count_rails       = "${var.aws_ecs_service_desired_count_rails}"
-  resource_base_name                        = "${var.resource_base_name}"
-  fastladder_db_name                        = "${var.fastladder_db_name}"
-  fastladder_db_pass                        = "${var.fastladder_db_pass}"
-  fastladder_db_user                        = "${var.fastladder_db_user}"
-  fastladder_secret_key_base                = "${var.fastladder_secret_key_base}"
-  source                                    = "./modules/fastladder"
+resource "aws_vpc" "myVPC" {
+    cidr_block = "10.4.0.0/16"
+    instance_tenancy = "default"
+    enable_dns_support = "true"
+    enable_dns_hostnames = "false"
+    tags {
+        Name = "myVPC"
+    }
 }
