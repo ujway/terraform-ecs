@@ -13,12 +13,6 @@ provider "aws" {
     region     = "${var.aws_region}"
 }
 
-resource "aws_vpc" "myVPC" {
-    cidr_block = "10.4.0.0/16"
-    instance_tenancy = "default"
-    enable_dns_support = "true"
-    enable_dns_hostnames = "false"
-    tags {
-        Name = "myVPC"
-    }
+resource "aws_ecs_cluster" "api_cluster" {
+    name = "api_cluster"
 }
