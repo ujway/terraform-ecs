@@ -1,0 +1,22 @@
+#####################################
+# TerraForm Variable Settings
+#####################################
+#AWS Settings
+access_key=
+secret_key=
+region=
+
+#App Name
+app_name=
+
+#Segment Settings
+root_segment=
+public_segment1=
+public_segment2=
+
+#AZ Settings
+public_segment1_az=
+public_segment2_az=
+
+#SG Settings
+ssh_allow_ip=
