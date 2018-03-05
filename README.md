@@ -5,11 +5,14 @@
 ## Prepare
 1. cp terraform.tfvars.sample terraform.tfvars
 2. vim terraform.tfvars
-edit variables.
+
+Edit config variables.
 
 ## Deployment
 1. terraform plan
+
 *.tf files are automatically included.
+
 2. terraform apply
 3. terraform show
 
