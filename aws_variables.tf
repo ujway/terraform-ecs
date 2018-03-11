@@ -7,7 +7,9 @@ variable "secret_key" {}
 variable "region" {}
 
 #App Name
-variable "app_name" {}
+variable "app_identity_name" {}
+variable "app_base_name" {}
+variable "aws_ecs_service_desired_count_rails" { default = 1 }
 
 #Segment Settings
 variable "root_segment" {}
