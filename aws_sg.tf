@@ -28,7 +28,7 @@ resource "aws_security_group" "app_sg" {
 //    from_port = 8080
 //    to_port = 8080
     protocol = "tcp"
-    security_groups = ["${aws_security_group.elb_sg.id}"]
+    security_groups = ["${aws_security_group.alb_sg.id}"]
   }
   ingress {
     from_port = 22

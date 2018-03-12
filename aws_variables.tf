@@ -2,6 +2,7 @@
 # Variable Settings
 #####################################
 #AWS Settings
+variable "account_id" {}
 variable "access_key" {}
 variable "secret_key" {}
 variable "region" {}
@@ -22,3 +23,11 @@ variable "public_segment2_az" {}
 
 #SG Settings
 variable "ssh_allow_ip" {}
+
+#DB Settings
+variable "db_user" {}
+variable "db_pass" {}
+variable "db_instance_class" {}
+
+#App Settings
+variable "secret_key_base" {}

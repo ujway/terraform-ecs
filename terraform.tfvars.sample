@@ -2,12 +2,14 @@
 # TerraForm Variable Settings
 #####################################
 #AWS Settings
+account_id=
 access_key=
 secret_key=
 region=
 
 #App Name
-app_name=
+app_identity_name=
+app_base_name=
 
 #Segment Settings
 root_segment=
@@ -20,3 +22,11 @@ public_segment2_az=
 
 #SG Settings
 ssh_allow_ip=
+
+#DB Settings
+db_user=
+db_pass=
+db_instance_class=
+
+#App Settings
+secret_key_base=
