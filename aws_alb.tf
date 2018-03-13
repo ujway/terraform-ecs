@@ -25,7 +25,6 @@ resource "aws_alb_target_group" "alb_target_group" {
   name     = "${var.app_base_name}-target-group"
   port     = 80
   protocol = "HTTP"
-  target_type = "ip"
   stickiness {
     type = "lb_cookie"
   }
