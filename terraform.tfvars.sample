@@ -30,6 +30,7 @@ db_instance_class=
 
 #App Settings
 secret_key_base=
+key_name=
 autoscaling_group_desired_capacity=
 autoscaling_group_max_size=
 autoscaling_group_min_size=

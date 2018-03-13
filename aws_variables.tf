@@ -31,6 +31,7 @@ variable "db_instance_class" {}
 
 #App Settings
 variable "secret_key_base" {}
+variable "key_name" {}
 variable "autoscaling_group_desired_capacity" {}
 variable "autoscaling_group_max_size" {}
 variable "autoscaling_group_min_size" {}

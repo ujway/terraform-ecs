@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
       "environment": ${data.template_file.environment_variables_rails.rendered},
       "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/rails-app:latest",
       "command": [
-        "bin/rails s"
+        "/bin/sh -c 'rails s -b 0.0.0.0'"
       ],
       "logConfiguration": {
         "logDriver": "awslogs",

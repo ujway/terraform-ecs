@@ -25,10 +25,14 @@ resource "aws_security_group" "app_sg" {
   ingress {
     from_port = 0
     to_port = 65535
-//    from_port = 8080
-//    to_port = 8080
     protocol = "tcp"
     security_groups = ["${aws_security_group.alb_sg.id}"]
+  }
+  ingress {
+    from_port = 0
+    to_port = 65535
+    protocol = "tcp"
+    cidr_blocks = ["${var.ssh_allow_ip}"]
   }
   ingress {
     from_port = 22
