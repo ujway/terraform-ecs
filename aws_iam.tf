@@ -33,7 +33,7 @@ resource "aws_iam_role" "ecs" {
   }
   JSON
 
-  name = "${var.app_base_name}_ecs"
+  name = "${var.app_base_name}UserForECS"
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_ec2_instance" {
