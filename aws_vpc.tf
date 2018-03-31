@@ -40,6 +40,27 @@ resource "aws_subnet" "vpc_main-public-subnet2" {
 }
 
 #####################################
+# Private Subnets Settings
+#####################################
+resource "aws_subnet" "vpc_main-private-subnet1" {
+  vpc_id = "${aws_vpc.vpc_main.id}"
+  cidr_block = "${var.private_segment1}"
+  availability_zone = "${var.private_segment1_az}"
+  tags {
+    Name = "${var.app_identity_name} PRIVATE SUBNET1"
+  }
+}
+
+resource "aws_subnet" "vpc_main-private-subnet2" {
+  vpc_id = "${aws_vpc.vpc_main.id}"
+  cidr_block = "${var.private_segment2}"
+  availability_zone = "${var.private_segment2_az}"
+  tags {
+    Name = "${var.app_identity_name} PRIVATE SUBNET2"
+  }
+}
+
+#####################################
 # Routes Table Settings
 #####################################
 resource "aws_route_table" "vpc_main-public-rt" {
