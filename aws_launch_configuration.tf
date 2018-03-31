@@ -17,7 +17,6 @@ resource "aws_autoscaling_group" "autoscaling_group" {
   max_size             = "${var.autoscaling_group_max_size}"
   min_size             = "${var.autoscaling_group_min_size}"
   name                 = "${var.app_base_name}"
-
   vpc_zone_identifier = [
     "${aws_subnet.vpc_main-public-subnet1.id}",
     "${aws_subnet.vpc_main-public-subnet2.id}"

@@ -2,7 +2,7 @@
 # ALB Settings
 #####################################
 resource "aws_alb" "alb" {
-  name = "ALB"
+  name = "${var.app_base_name}_ALB"
   subnets = [
     "${aws_subnet.vpc_main-public-subnet1.id}",
     "${aws_subnet.vpc_main-public-subnet2.id}",
