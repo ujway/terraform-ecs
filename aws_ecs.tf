@@ -17,71 +17,131 @@ resource "aws_ecs_service" "ecs_service" {
 }
 
 resource "aws_ecs_task_definition" "ecs_task_definition" {
-  family                   = "${var.app_base_name}_rails"
-  // requires_compatibilities = ["EC2"]
-  // network_mode             = "awsvpc"
-  // execution_role_arn       = "arn:aws:iam::${var.account_id}:role/ecsTaskExecutionRole"
-  cpu                      = 256
-  memory                   = 512
-
   container_definitions = <<-JSON
   [
     {
-      "environment": ${data.template_file.environment_variables_rails.rendered},
-      "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/rails-app:latest",
-      "command": [
-        "/bin/sh -c 'rails s -b 0.0.0.0'"
-      ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "${var.app_base_name}",
-          "awslogs-region": "${var.region}",
-          "awslogs-stream-prefix": "rails"
-        }
-      },
-      "cpu": 256,
-      "memory": 512,
-      "networkMode": "awsvpc",
-      "name": "${var.app_base_name}_rails",
-      "portMappings": [
+      "executionRoleArn": null,
+      "containerDefinitions": [
         {
-          "containerPort": 3000,
-          "protocol": "tcp"
+          "dnsSearchDomains": null,
+          "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "${var.rails_awslogs_group}",
+              "awslogs-region": "${var.rails_awslogs_region}",
+              "awslogs-stream-prefix": "${var.rails_awslogs_stream_prefix}"
+            }
+          },
+          "entryPoint": null,
+          "portMappings": [
+            {
+              "hostPort": 3000,
+              "protocol": "tcp",
+              "containerPort": 3000
+            }
+          ],
+          "command": [],
+          "linuxParameters": null,
+          "cpu": 300,
+          "environment": [
+            {
+              "name": "MYSQL_DATABASE",
+              "value": "${var.mysql_database}"
+            },
+            {
+              "name": "MYSQL_USERNAME",
+              "value": "${var.mysql_username}"
+            },
+            {
+              "name": "MYSQL_PASSWORD",
+              "value": "${var.mysql_password}"
+            },
+            {
+              "name": "MYSQL_HOST",
+              "value": "${var.mysql_host}"
+            },
+            {
+              "name": "SECRET_KEY_BASE",
+              "value": "${var.secret_key_base}"
+            }
+          ],
+          "ulimits": null,
+          "dnsServers": null,
+          "mountPoints": [],
+          "workingDirectory": null,
+          "dockerSecurityOptions": null,
+          "memory": null,
+          "memoryReservation": 300,
+          "volumesFrom": [],
+          "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/${var.app_base_name}_nginx_dev",
+          "disableNetworking": null,
+          "healthCheck": null,
+          "essential": true,
+          "links": [],
+          "hostname": null,
+          "extraHosts": null,
+          "user": null,
+          "readonlyRootFilesystem": null,
+          "dockerLabels": null,
+          "privileged": null,
+          "name": "${var.app_base_name}-rails-dev"
+        },
+        {
+          "dnsSearchDomains": null,
+          "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "${var.nginx_awslogs_group}",
+              "awslogs-region": "${var.nginx_awslogs_region}",
+              "awslogs-stream-prefix": "${var.nginx_awslogs_stream_prefix}"
+            }
+          },
+          "entryPoint": null,
+          "portMappings": [
+            {
+              "hostPort": 80,
+              "protocol": "tcp",
+              "containerPort": 80
+            }
+          ],
+          "command": null,
+          "linuxParameters": null,
+          "cpu": 300,
+          "environment": [],
+          "ulimits": null,
+          "dnsServers": null,
+          "mountPoints": [],
+          "workingDirectory": null,
+          "dockerSecurityOptions": null,
+          "memory": null,
+          "memoryReservation": 300,
+          "volumesFrom": [],
+          "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/${var.app_base_name}_nginx_dev",
+          "disableNetworking": null,
+          "healthCheck": null,
+          "essential": true,
+          "links": [
+            "${var.app_base_name}-rails-dev:app"
+          ],
+          "hostname": null,
+          "extraHosts": null,
+          "user": null,
+          "readonlyRootFilesystem": null,
+          "dockerLabels": null,
+          "privileged": null,
+          "name": "${var.app_base_name}-nginx-dev"
         }
-      ]
+      ],
+      "memory": "600",
+      "taskRoleArn": "arn:aws:iam::${var.account_id}:role/ecsTaskExecutionRole",
+      "family": "${var.app_base_name}_rails",
+      "requiresCompatibilities": null,
+      "networkMode": "bridge",
+      "cpu": "600",
+      "volumes": [],
+      "placementConstraints": []
     }
   ]
   JSON
 }
 
-resource "aws_ecs_task_definition" "rails_db_setup" {
-  family                   = "${var.app_base_name}_rails_db_setup"
-  // requires_compatibilities = ["EC2"]
-  // network_mode             = "awsvpc"
-  // execution_role_arn       = "arn:aws:iam::${var.account_id}:role/ecsTaskExecutionRole"
-  cpu                      = 256
-  memory                   = 512
-
-  container_definitions = <<-JSON
-  [
-    {
-      "command": ["bin/rake", "db:create", "db:migrate"],
-      "environment": ${data.template_file.environment_variables_rails.rendered},
-      "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/rails-app:latest",
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "${var.app_base_name}",
-          "awslogs-region": "${var.region}",
-          "awslogs-stream-prefix": "rails"
-        }
-      },
-      "cpu": 256,
-      "memory": 512,
-      "networkMode": "awsvpc",
-      "name": "${var.app_base_name}_rails"
-    }
-  ]
-  JSON
-}
