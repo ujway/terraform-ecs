@@ -1,6 +1,7 @@
 #####################################
 # Variable Settings
 #####################################
+#TODO: set environment variables(dev, pro)
 #AWS Settings
 variable "account_id" {}
 variable "access_key" {}
@@ -37,3 +38,15 @@ variable "autoscaling_group_max_size" {}
 variable "autoscaling_group_min_size" {}
 variable "launch_configuration_image_id" {}
 variable "launch_configuration_instance_type" {}
+
+#ECS Settings
+variable "rails_awslogs_group" {}
+variable "rails_awslogs_region" {}
+variable "rails_awslogs_stream_prefix" {}
+variable "mysql_database" {}
+variable "mysql_username" {}
+variable "mysql_password" {}
+variable "mysql_host" {}
+variable "nginx_awslogs_group" {}
+variable "nginx_awslogs_region" {}
+variable "nginx_awslogs_stream_prefix" {}

@@ -36,3 +36,15 @@ autoscaling_group_max_size=
 autoscaling_group_min_size=
 launch_configuration_image_id=
 launch_configuration_instance_type=
+
+#ECS Settings
+rails_awslogs_group=
+rails_awslogs_region=
+rails_awslogs_stream_prefix=
+mysql_database=
+mysql_username=
+mysql_password=
+mysql_host=
+nginx_awslogs_group=
+nginx_awslogs_region=
+nginx_awslogs_stream_prefix=
