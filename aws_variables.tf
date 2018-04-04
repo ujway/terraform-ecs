@@ -1,7 +1,6 @@
 #####################################
 # Variable Settings
 #####################################
-#TODO: set environment variables(dev, pro)
 #AWS Settings
 variable "account_id" {}
 variable "access_key" {}
@@ -38,6 +37,7 @@ variable "autoscaling_group_max_size" {}
 variable "autoscaling_group_min_size" {}
 variable "launch_configuration_image_id" {}
 variable "launch_configuration_instance_type" {}
+variable "terraform_state_bucket" {}
 
 #ECS Settings
 variable "rails_awslogs_group" {}

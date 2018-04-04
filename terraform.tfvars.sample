@@ -36,6 +36,7 @@ autoscaling_group_max_size=
 autoscaling_group_min_size=
 launch_configuration_image_id=
 launch_configuration_instance_type=
+terraform_state_bucket=
 
 #ECS Settings
 rails_awslogs_group=
