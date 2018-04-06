@@ -73,7 +73,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
           "memory": null,
           "memoryReservation": 300,
           "volumesFrom": [],
-          "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/${var.app_base_name}_nginx_dev",
+          "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/${var.ecs_name_rails}",
           "disableNetworking": null,
           "healthCheck": null,
           "essential": true,
@@ -84,7 +84,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
           "readonlyRootFilesystem": null,
           "dockerLabels": null,
           "privileged": null,
-          "name": "${var.app_base_name}-rails-dev"
+          "name": "${var.ecs_name_rails}"
         },
         {
           "dnsSearchDomains": null,
@@ -116,12 +116,12 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
           "memory": null,
           "memoryReservation": 300,
           "volumesFrom": [],
-          "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/${var.app_base_name}_nginx_dev",
+          "image": "${var.account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/${var.ecs_name_nginx}",
           "disableNetworking": null,
           "healthCheck": null,
           "essential": true,
           "links": [
-            "${var.app_base_name}-rails-dev:app"
+            "${var.ecs_name_web}:app"
           ],
           "hostname": null,
           "extraHosts": null,
@@ -129,7 +129,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
           "readonlyRootFilesystem": null,
           "dockerLabels": null,
           "privileged": null,
-          "name": "${var.app_base_name}-nginx-dev"
+          "name": "${var.ecs_name_nginx}"
         }
       ],
       "memory": "600",
