@@ -10,7 +10,7 @@ variable "region" {}
 #App Name
 variable "app_identity_name" {}
 variable "app_base_name" {}
-variable "aws_ecs_service_desired_count_rails" { default = 1 }
+variable "aws_ecs_service_desired_count_rails" {}
 
 #Segment Settings
 variable "root_segment" {}
@@ -36,6 +36,8 @@ variable "db_instance_class" {}
 #App Settings
 variable "secret_key_base" {}
 variable "key_name" {}
+variable "deployer_public_key" {}
+variable "deployer_private_key" {}
 variable "autoscaling_group_desired_capacity" {}
 variable "autoscaling_group_max_size" {}
 variable "autoscaling_group_min_size" {}
