@@ -1,3 +1,6 @@
+#####################################
+# IAM Settings
+#####################################
 resource "aws_iam_role" "ec2" {
   assume_role_policy = <<-JSON
   {
@@ -14,7 +17,7 @@ resource "aws_iam_role" "ec2" {
   }
   JSON
 
-  name = "${var.app_base_name}_ec2"
+  name = "${var.app_base_name}RoleForEC2"
 }
 
 resource "aws_iam_role" "ecs" {
@@ -33,14 +36,13 @@ resource "aws_iam_role" "ecs" {
   }
   JSON
 
-  name = "${var.app_base_name}UserForECS"
+  name = "${var.app_base_name}RoleForECS"
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_ec2_instance" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
   role       = "${aws_iam_role.ec2.id}"
 }
-
 
 resource "aws_iam_role_policy_attachment" "ecs_service" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"

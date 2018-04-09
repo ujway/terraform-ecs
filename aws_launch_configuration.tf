@@ -1,3 +1,6 @@
+#####################################
+# Launch Configuration Settings
+#####################################
 resource "aws_launch_configuration" "launch_configuration" {
   associate_public_ip_address = true
   depends_on                  = ["aws_internet_gateway.vpc_main-igw"]

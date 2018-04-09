@@ -2,7 +2,7 @@
 # Security Group Settings
 #####################################
 resource "aws_security_group" "alb_sg" {
-  name = "ALB_SG"
+  name = "${var.app_identity_name}_ALB_SG"
   vpc_id = "${aws_vpc.vpc_main.id}"
   ingress {
     from_port = 80
@@ -20,7 +20,7 @@ resource "aws_security_group" "alb_sg" {
 }
 
 resource "aws_security_group" "app_sg" {
-  name = "APP_SG"
+  name = "${var.app_identity_name}_APP_SG"
   vpc_id = "${aws_vpc.vpc_main.id}"
   ingress {
     from_port = 0

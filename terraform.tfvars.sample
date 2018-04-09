@@ -10,15 +10,20 @@ region=
 #App Name
 app_identity_name=
 app_base_name=
+aws_ecs_service_desired_count_rails=
 
 #Segment Settings
 root_segment=
 public_segment1=
 public_segment2=
+private_segment1=
+private_segment2=
 
 #AZ Settings
 public_segment1_az=
 public_segment2_az=
+private_segment1_az=
+private_segment2_az=
 
 #SG Settings
 ssh_allow_ip=
@@ -49,3 +54,5 @@ mysql_host=
 nginx_awslogs_group=
 nginx_awslogs_region=
 nginx_awslogs_stream_prefix=
+ecs_name_rails=
+ecs_name_nginx=

@@ -16,10 +16,14 @@ variable "aws_ecs_service_desired_count_rails" { default = 1 }
 variable "root_segment" {}
 variable "public_segment1" {}
 variable "public_segment2" {}
+variable "private_segment1" {}
+variable "private_segment2" {}
 
 #AZ Settings
 variable "public_segment1_az" {}
 variable "public_segment2_az" {}
+variable "private_segment1_az" {}
+variable "private_segment2_az" {}
 
 #SG Settings
 variable "ssh_allow_ip" {}
@@ -50,3 +54,5 @@ variable "mysql_host" {}
 variable "nginx_awslogs_group" {}
 variable "nginx_awslogs_region" {}
 variable "nginx_awslogs_stream_prefix" {}
+variable "ecs_name_rails" {}
+variable "ecs_name_nginx" {}
