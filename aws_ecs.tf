@@ -124,7 +124,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
           "healthCheck": null,
           "essential": true,
           "links": [
-            "${var.ecs_name_web}:app"
+            "${var.ecs_name_rails}:app"
           ],
           "hostname": null,
           "extraHosts": null,

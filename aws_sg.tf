@@ -50,13 +50,11 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_security_group" "db_sg" {
-  name = "DB_SG"
+  name = "${var.app_identity_name}_DB_SG"
   vpc_id = "${aws_vpc.vpc_main.id}"
   ingress {
     from_port = 0
     to_port = 65535
-    //    from_port = 8080
-    //    to_port = 8080
     protocol = "tcp"
     security_groups = ["${aws_security_group.app_sg.id}"]
   }

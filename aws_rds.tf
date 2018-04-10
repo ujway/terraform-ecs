@@ -1,6 +1,7 @@
 #####################################
 # DB Instance Settings
 #####################################
+// FIXME: remove rds from terraform on production
 resource "aws_db_instance" "db_instance" {
   allocated_storage          = 20
   auto_minor_version_upgrade = true
