@@ -1,7 +1,5 @@
 # terraform-ecs
 
-## This is still hoge
-
 ## Overview
 This repository provides automatic deploying with Terraform, based on infrastructure as code.
 
@@ -35,9 +33,6 @@ terraform plan
 terraform apply
 terraform show
 ```
-
-### Regist domain to job/batch instance
-Domain has to be registered for job/batch instance because Kuroko2 requires Google OAuth.
 
 ### Destroy
 ```
